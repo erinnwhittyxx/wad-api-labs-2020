@@ -1,10 +1,15 @@
 import './db';
+import {loadUsers} from './seedData'
 import dotenv from 'dotenv';
 import express from 'express';
 import moviesRouter from './api/movies';
 import bodyParser from 'body-parser';
 
 dotenv.config();
+
+if (process.env.SEED_DB) {
+  loadUsers();
+}
 
 const errHandler = (err, req, res, next) => {
   if(process.env.NODE_ENV === 'production') {
