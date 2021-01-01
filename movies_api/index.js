@@ -1,4 +1,4 @@
-import {loadUsers} from './seedData'
+import {loadUsers, loadMovies} from './seedData';
 import session from 'express-session';
 import passport from './authenticate';
 import './db';
@@ -12,6 +12,7 @@ dotenv.config();
 
 if (process.env.SEED_DB) {
   loadUsers();
+  loadMovies();
 }
 
 const errHandler = (err, req, res, next) => {
