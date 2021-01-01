@@ -1,9 +1,11 @@
-import './db';
 import {loadUsers} from './seedData'
+import session from 'express-session';
+import authenticate from './authenticate';
+import './db';
 import usersRouter from './api/users';
+import moviesRouter from './api/movies';
 import dotenv from 'dotenv';
 import express from 'express';
-import moviesRouter from './api/movies';
 import bodyParser from 'body-parser';
 
 dotenv.config();
@@ -23,10 +25,17 @@ const app = express();
 
 const port = process.env.PORT;
 
+//session middleware
+app.use(session({
+  secret: 'ilikecake',
+  resave: true,
+  saveUninitialized: true
+}));
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use('/api/movies', moviesRouter);
+app.use('/api/movies', authenticate, moviesRouter);
 app.use('/api/users', usersRouter);
 app.use(errHandler);
 
