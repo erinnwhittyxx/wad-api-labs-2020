@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext} from 'react';
 import { MoviesContext } from './moviesContext';
+import { addFavorite } from '../api/movie-api';
 import "./page.css"
 
 const Movies = () => {
@@ -22,6 +23,7 @@ const Movies = () => {
                             <td>{movie.id}</td>
                             <td>{movie.title}</td>
                             <td>{movie.release_date}</td>
+                            <td><button onClick={addFavorite(movie.id)}>Add To Favorites</button></td>
                         </tr>
                     </table>
                     <br/>

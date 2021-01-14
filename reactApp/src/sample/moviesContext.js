@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect, useReducer } from "react";
-import { getMovies, getUpcoming, getPopular } from "../api/movie-api";
+import { getMovies, getUpcoming, getPopular, addFavorite, getFavorites } from "../api/movie-api";
 
 
 export const MoviesContext = createContext(null);
@@ -12,26 +12,28 @@ const reducer = (state, action) => {
     case "load-popular":
       return { 
         popular: action.payload.movies, movies: [...state.movies], upcoming: [...state.upcoming]};
+    case "load":
+      return { movies: action.payload.result, upcoming: [...state.upcoming], popular: [...state.popular]};
     case "add-favorite":
       return {
         movies: state.movies.map((m) =>
           m.id === action.payload.movie.id ? { ...m, favorite: true } : m
         ),
+        upcoming: [...state.upcoming],
+        popular: [...state.popular]
       };
-    case "load":
-      return { movies: action.payload.result, upcoming: [...state.upcoming], popular: [...state.popular]};
     default:
       return state;
   }
 };
 
 const MoviesContextProvider = props => {
-  const [state, dispatch] = useReducer(reducer, { movies: [], upcoming: [], popular: []});
+  const [state, dispatch] = useReducer(reducer, { movies: [], upcoming: [], popular: [], favorites: []});
   const [authenticated, setAuthenticated] = useState(false);
 
-  const addToFavorites = (movieId) => {
-    const index = state.movies.map((m) => m.id).indexOf(movieId);
-    dispatch({ type: "add-favorite", payload: { movie: state.movies[index] } });
+  const addToFavorites = (favorites) => {
+    const result = addFavorite(favorites);
+    console.log(result)
   };
 
   useEffect(() => {
