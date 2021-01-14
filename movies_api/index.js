@@ -1,4 +1,4 @@
-import {loadUsers, loadMovies} from './seedData';
+import {loadUsers, loadMovies, loadUpcoming, loadPopular} from './seedData';
 import session from 'express-session';
 import passport from './authenticate';
 import './db';
@@ -13,6 +13,8 @@ dotenv.config();
 if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
+  loadUpcoming();
+  loadPopular();
 }
 
 const errHandler = (err, req, res, next) => {
@@ -39,6 +41,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/upcoming',moviesRouter);
+app.use('/api/popular',moviesRouter);
 app.use(errHandler);
 
 app.listen(port, () => {
