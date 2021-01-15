@@ -1,4 +1,4 @@
-import {loadUsers, loadMovies, loadUpcoming, loadPopular} from './seedData';
+import {loadUsers, loadMovies, loadUpcoming, loadPopular, loadNowPlaying} from './seedData';
 import session from 'express-session';
 import passport from './authenticate';
 import './db';
@@ -15,6 +15,7 @@ if (process.env.SEED_DB) {
   loadMovies();
   loadUpcoming();
   loadPopular();
+  loadNowPlaying();
 }
 
 const errHandler = (err, req, res, next) => {
@@ -43,6 +44,7 @@ app.use('/api/movies', moviesRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/upcoming',moviesRouter);
 app.use('/api/popular',moviesRouter);
+app.use('/api/nowplaying',moviesRouter);
 app.use(errHandler);
 
 app.listen(port, () => {

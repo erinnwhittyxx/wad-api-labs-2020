@@ -2,8 +2,13 @@ import express from 'express';
 import movieModel from './movieModel';
 import upcomingModel from './upcomingModel';
 import popularModel from './popularModel'
+import nowplayingModel from './nowplayingModel';
 
 const router = express.Router();
+
+router.get('/nowplaying', (req, res, next) => {
+  nowplayingModel.find().then(nowplaying => res.status(200).send(nowplaying)).catch(next);
+});
 
 router.get('/popular', (req, res, next) => {
   popularModel.find().then(popular => res.status(200).send(popular)).catch(next);

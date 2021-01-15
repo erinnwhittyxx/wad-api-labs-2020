@@ -4,6 +4,7 @@ Name: Erinn Whitty
 
 ## Features.
 
+ + Merged Assingment 1 React App
  + Upcoming Movies Page - displays upcoming movies from upcomingModel in the movies API
  + Popular Movies Page - displays popular movies from popularModel in the movies API
 
