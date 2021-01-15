@@ -6,57 +6,54 @@ Name: Erinn Whitty
 
  + Merged Assingment 1 React App
  + Upcoming Movies Page - displays upcoming movies from upcomingModel in the movies API
+ + Now Playing Movies Page - displays now playing movies from nowplayingModel in the movies API
  + Popular Movies Page - displays popular movies from popularModel in the movies API
 
 ## Installation Requirements
 
-Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB instance, any other 3rd party software not in the package.json). 
+Installed the following software/packages:
 
-Describe getting/installing the software, perhaps:
+ + Postman (Desktop)
+ + Node
+ + MongoDB (installation instruction on website)
+ + NPM
+ + Development dependencies (npm install --save-dev babel-cli babel-preset-env nodemon eslint babel-eslint)
 
-```bat
-git clone http:\myrepo.git
-```
-
-followed by installation
-
-```bat
-git install
-```
 
 ## API Configuration
-Describe any configuration that needs to take place before running the API. For example, creating an ``.env`` and what variables to put in it. Give an example of how this might be structured/done.
-REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON GITHUB, just placeholders as indicated below:
 
-```bat
+For the API configuration I created an '.env' file containing the following:
+
 NODE_ENV=development
 PORT=8080
-HOST=
+HOST=localhost
 mongoDB=YourMongoURL
 seedDb=true
 secret=YourJWTSecret
-```
+
+I also created a .gitignore file
 
 
 ## API Design
-Give an overview of your web API design, perhaps similar to the following: 
+
+The following is an overview of of my web API design:
 
 |  |  GET | POST | PUT | DELETE
 | -- | -- | -- | -- | -- 
-| /api/movies |Gets a list of movies | N/A | N/A |
+| /api/movies | Gets a list of movies | N/A | N/A | N/A
 | /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
-| /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A  
-| ... | ... | ... | ... | ...
-
-If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
+| /api/movies/upcoming | Gets upcoming movies | N/A | N/A | N/A 
+| /api/movies/popular | Gets popular movies | *Attempt* Add new popular movie | N/A | N/A 
+| /api/movies/nowplaying | Gets now playing movies | N/A | N/A | N/A
 
 
 ## Security and Authentication
-Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
+
+I originally had authentication working; user login/signup, until I merged my assignment 1 with my assignment2.
 
 ## Integrating with React App
 
-Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
+I integrated my assignment 1 React app with my API. The main change was inserting the code below into my tmbd-api.js in my moviesApp:
 
 ~~~Javascript
 export const getMovies = () => {
@@ -74,8 +71,4 @@ export const getMovies = () => {
 
 ## Extra features
 
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
-
-## Independent learning.
-
-. . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
+ + Attempted POST for popular movies.   

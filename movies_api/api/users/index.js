@@ -2,6 +2,7 @@ import express from 'express';
 import User from './userModel';
 import jwt from 'jsonwebtoken';
 import movieModel from '../movies/movieModel';
+import { getMovieReviews, getGenres} from '../tmdb-api';
 
 const router = express.Router(); // eslint-disable-line
 
@@ -83,6 +84,20 @@ router.post('/:userName/favourites', async (req, res, next) => {
               msg: 'Duplicate Movie Error'
           });
 }});
+
+router.get('/:id/reviews', (req, res, next) => {
+  const id = parseInt(req.params.id);
+  getMovieReviews(id)
+  .then(reviews => res.status(200).send(reviews))
+  .catch((error) => next(error));
+});
+
+ router.get('/:id/genres', (req, res, next) => {
+   const id = parseInt(req.params.id);
+   getGenres(id)
+   .then(genres => res.status(200).send(genres))
+   .catch((error) => next(error));
+});
 
 
 export default router;
