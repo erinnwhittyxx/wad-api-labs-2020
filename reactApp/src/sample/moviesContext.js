@@ -57,6 +57,13 @@ const MoviesContextProvider = props => {
     });
   },[]);
 
+  useEffect(() => {
+    getFavorites().then(favorites => {
+      console.log(favorites);
+      dispatch({ type: "load-favorites", payload: {favorites}});
+    });
+  },[]);
+
   return (
     <MoviesContext.Provider
       value={{

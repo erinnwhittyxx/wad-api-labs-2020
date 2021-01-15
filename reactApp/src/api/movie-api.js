@@ -19,7 +19,7 @@ export const signup = (username, password) => {
 };
 
 export const addFavorite = (favorites) => {
-    return fetch('/api/users/user1/favourites?action=register', {
+    return fetch('/api/users/favourites', {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -58,7 +58,7 @@ export const getPopular = () => {
 
 export const getFavorites = () => {
     return fetch(
-      '/api/users/user1/favorites',{headers: {
+      '/api/users/user1/favourites',{headers: {
         'Authorization': window.localStorage.getItem('token')
       }
     }

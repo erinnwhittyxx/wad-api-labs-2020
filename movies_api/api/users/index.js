@@ -82,7 +82,7 @@ router.post('/:userName/favourites', async (req, res, next) => {
               code: 401,
               msg: 'Duplicate Movie Error'
           });
-      }});
+}});
 
 
 export default router;

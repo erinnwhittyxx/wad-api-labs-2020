@@ -6,7 +6,7 @@ import "./page.css"
 
 const Favorites = props => {
     const context = useContext(MoviesContext);
-    const favorites = context.movies.filter( m => m.favorite )
+    const favorites = context.movies.filter( m => m.favorites )
     return <>
         <h2>Favourite Movies</h2>
         <div className="row">

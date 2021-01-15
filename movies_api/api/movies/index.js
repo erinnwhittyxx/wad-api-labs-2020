@@ -9,6 +9,19 @@ router.get('/popular', (req, res, next) => {
   popularModel.find().then(popular => res.status(200).send(popular)).catch(next);
 });
 
+router.post('/popular', async (req, res, next) => {
+  const newPopular = req.body.id;
+  const movie = await movieModel.findByMovieDBId(newPopular);
+  if (popular.indexOf(movie._id) == -1) {
+      await popular.push(movie._id);
+      res.status(201).json();
+  } else {
+      res.status(401).json({
+          code: 401,
+          msg: 'Duplicate Movie Error'
+      });
+}});
+
 router.get('/upcoming', (req, res, next) => {
   upcomingModel.find().then(upcoming => res.status(200).send(upcoming)).catch(next);
 });
