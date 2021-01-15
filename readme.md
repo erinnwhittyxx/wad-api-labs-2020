@@ -24,12 +24,14 @@ Installed the following software/packages:
 
 For the API configuration I created an '.env' file containing the following:
 
+```bat
 NODE_ENV=development
 PORT=8080
 HOST=localhost
 mongoDB=YourMongoURL
 seedDb=true
 secret=YourJWTSecret
+```
 
 I also created a .gitignore file
 
